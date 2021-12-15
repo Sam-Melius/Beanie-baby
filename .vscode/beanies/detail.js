@@ -1,30 +1,34 @@
 // import functions and grab DOM elements
-import { getAllBeanies } from './fetch-utils.js';
+import { getBeanie } from '../fetch-utils.js';
 
-const beaniesEl = document.querySelector('.beanies');
+const beaniesDetailEl = document.querySelector('.beanies-detail');
 
 // let state
 
 window.addEventListener('load', async() => {
-    const beanies = await getAllBeanies();
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
 
-    for (let beanie of beanies) {
-        const beanieEl = document.createElement('a');
+    const beanie = await getBeanie(id);
+
+     
+        const beanieEl = document.createElement('div');
         const nameEl = document.createElement('p');
         const generationEl = document.createElement('p');
         const typeEl = document.createElement('p');
         const bornEl = document.createElement('p');
+        const descriptionEl = document.createElement('p');
 
-        beanieEl.classList.add('beanie');
-        beanieEl.href = `./beanies/?id=${beanie.id}`;
+        
         nameEl.textContent = beanie.name;
         generationEl.textContent = beanie.generation;
         typeEl.textContent = beanie.type;
         bornEl.textContent = beanie.born;
+        descriptionEl.textContent = beanie.description;
 
-        beanieEl.append(nameEl, generationEl, typeEl, bornEl);
+        beanieEl.append(nameEl, generationEl, typeEl, bornEl, descriptionEl);
         beaniesEl.append(beanieEl);
-    }
+    
 
 });
 // set event listeners 

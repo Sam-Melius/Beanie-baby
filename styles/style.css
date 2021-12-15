@@ -89,3 +89,19 @@ footer {
     background-color: var(--color3);
     box-shadow: var(--shadow);
 }
+
+.beanies {
+    dispaly: flex;
+}
+
+.beanie {
+    border: solid 3px black;
+    color: white;
+    background-color: red;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 200px;
+    height: 200px;
+    margin: 5px;
+    border-radius: 15px;
+}
