@@ -1,7 +1,9 @@
 // import functions and grab DOM elements
 import { getBeanie } from '../fetch-utils.js';
+import { renderDetails, } from '../render-utils.js';
 
-const beanieDetailEl = document.querySelector('.beanie-detail');
+
+const beanieContainerEl = document.querySelector('.beanie-container');
 
 // let state
 
@@ -12,24 +14,9 @@ window.addEventListener('load', async() => {
 
     const beanie = await getBeanie(id);
 
-     
-    const beanieEl = document.createElement('div');
-    const nameEl = document.createElement('p');
-    const generationEl = document.createElement('p');
-    const typeEl = document.createElement('p');
-    const bornEl = document.createElement('p');
-    const descriptionEl = document.createElement('p');
-
-        
-    nameEl.textContent = beanie.name;
-    generationEl.textContent = beanie.generation;
-    typeEl.textContent = beanie.type;
-    bornEl.textContent = beanie.born;
-    descriptionEl.textContent = beanie.description;
-
-    beanieEl.append(nameEl, generationEl, typeEl, bornEl, descriptionEl);
-    beanieDetailEl.append(beanieEl);
     
+    const beanieDetailEl = renderDetails(beanie);
+    beanieContainerEl.append(beanieDetailEl);
 
 });
 // set event listeners 
