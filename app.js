@@ -1,5 +1,6 @@
 // import functions and grab DOM elements
 import { getAllBeanies } from './fetch-utils.js';
+import { renderCard } from './render-utils.js';
 
 const beaniesEl = document.querySelector('.beanies');
 
@@ -9,20 +10,7 @@ window.addEventListener('load', async() => {
     const beanies = await getAllBeanies();
 
     for (let beanie of beanies) {
-        const beanieEl = document.createElement('a');
-        const nameEl = document.createElement('p');
-        const generationEl = document.createElement('p');
-        const typeEl = document.createElement('p');
-        const bornEl = document.createElement('p');
-
-        beanieEl.classList.add('beanie');
-        beanieEl.href = `./beanies/?id=${beanie.id}`;
-        nameEl.textContent = beanie.name;
-        generationEl.textContent = beanie.generation;
-        typeEl.textContent = beanie.type;
-        bornEl.textContent = beanie.born;
-
-        beanieEl.append(nameEl, generationEl, typeEl, bornEl);
+        const beanieEl = renderCard(beanie);
         beaniesEl.append(beanieEl);
     }
 
